@@ -18,6 +18,11 @@ jobs:
         with:
           python-version: "3.11"
 
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg libgl1
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
@@ -29,4 +34,3 @@ jobs:
 
       - name: Test
         run: pytest
-
