@@ -5,6 +5,14 @@ All notable changes to this project are documented in this file.
 The format is based on Keep a Changelog, and this project follows
 Semantic Versioning.
 
+## [1.0.2] - 2026-03-24
+
+### Changed
+
+- Added Linux CI system dependencies (`ffmpeg`, `libgl1`) for reliable
+  OpenCV-based tests in GitHub Actions
+- Bumped plugin version in `fiftyone.yml` from `1.0.1` to `1.0.2`
+
 ## [1.0.1] - 2026-03-24
 
 ### Added
@@ -27,12 +35,6 @@ Semantic Versioning.
 ### Added
 
 - Initial release of `@parva101/video2dataset`
-- Operators:
-- `sample_from_youtube`
-- `sample_from_video`
-- Frame extraction strategies:
-- `uniform`
-- `scene_change`
-- `hybrid`
+- Operators: `sample_from_youtube`, `sample_from_video`
+- Frame extraction strategies: `uniform`, `scene_change`, `hybrid`
 - Optional perceptual deduplication and metadata enrichment
-
