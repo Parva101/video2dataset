@@ -1,0 +1,16 @@
+name: "@parva101/video2dataset"
+type: plugin
+version: 1.0.0
+author: Parva101
+description: >
+  Convert YouTube or local video files into FiftyOne image datasets using
+  intelligent frame extraction (uniform, scene-change, or hybrid) with
+  optional perceptual deduplication. Saves source metadata on each sample and
+  opens the new dataset automatically.
+url: https://github.com/Parva101/video2dataset
+license: Apache-2.0
+fiftyone:
+  version: "*"
+operators:
+  - sample_from_youtube
+  - sample_from_video

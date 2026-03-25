@@ -1,0 +1,5 @@
+yt-dlp
+opencv-python
+imagehash
+Pillow
+numpy
