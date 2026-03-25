@@ -14,13 +14,11 @@ import tempfile
 from pathlib import Path
 
 import cv2
-import numpy as np
-from PIL import Image
-
 import fiftyone as fo
 import fiftyone.operators as foo
 import fiftyone.operators.types as types
-
+import numpy as np
+from PIL import Image
 
 logger = logging.getLogger(__name__)
 

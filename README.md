@@ -1,69 +1,83 @@
 # video2dataset (`@parva101/video2dataset`)
 
-A FiftyOne Python plugin that converts YouTube URLs or local video files into image datasets by extracting representative frames.
+[![CI](https://github.com/Parva101/video2dataset/actions/workflows/ci.yml/badge.svg)](https://github.com/Parva101/video2dataset/actions/workflows/ci.yml)
+[![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](./LICENSE)
+[![FiftyOne Plugin](https://img.shields.io/badge/FiftyOne-plugin-orange.svg)](https://docs.voxel51.com/plugins/index.html)
 
-## What it does
+A production-ready FiftyOne Python plugin that converts YouTube URLs or local
+video files into image datasets by extracting representative keyframes.
 
-- Downloads a YouTube video with `yt-dlp` or reads a local video file
-- Extracts frames using one of three strategies:
+## Features
+
+- YouTube ingest via `yt-dlp`
+- Local video ingest
+- Three frame selection strategies:
 - `uniform` (every N seconds)
 - `scene_change` (histogram-based scene detection)
 - `hybrid` (uniform + scene change)
-- Optionally removes near-duplicate frames using perceptual hash deduplication
-- Creates a persistent FiftyOne dataset and stores source metadata
-- Automatically opens the dataset in the FiftyOne App
+- Optional perceptual hash deduplication (`pHash`)
+- Automatic dataset creation + open in FiftyOne App
+- Source metadata attached to samples and dataset info
 
-## Plugin operators
+## Operators
 
 - `sample_from_youtube`
 - `sample_from_video`
 
 ## Requirements
 
-- FiftyOne (latest recommended)
+- Python 3.10+
+- FiftyOne (latest stable recommended)
 - Python packages in [`requirements.txt`](./requirements.txt)
-- `ffmpeg` available on PATH (recommended for robust video handling)
+- `ffmpeg` on `PATH` (recommended)
 
-Install plugin dependencies:
+Install dependencies:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## Install the plugin
+## Installation
 
-From GitHub:
+Install from GitHub:
 
 ```bash
 fiftyone plugins download https://github.com/Parva101/video2dataset
 ```
 
-Or install only this plugin name:
+Install only this plugin:
 
 ```bash
 fiftyone plugins download https://github.com/Parva101/video2dataset --plugin-names @parva101/video2dataset
 ```
 
+Verify install:
+
+```bash
+fiftyone plugins list
+fiftyone operators list
+```
+
 ## Usage
 
 1. Launch FiftyOne App
-2. Open the Operator Browser
-3. Run either:
-- `Video Sampler: YouTube to dataset`
+2. Open Operator Browser
+3. Run:
+- `Video Sampler: YouTube to dataset`, or
 - `Video Sampler: local video to dataset`
-4. Configure parameters:
+4. Configure:
 - `dataset_name` (required)
 - `strategy`: `uniform | scene_change | hybrid`
 - `max_frames`
 - `interval_seconds`
-- `scene_threshold` (0 to 1)
+- `scene_threshold` (`0` to `1`)
 - `dedup` and `dedup_threshold`
 - `overwrite_dataset`
 - `output_dir` (optional)
 
-## Output dataset schema
+## Output schema
 
-Each sample includes:
+Sample fields:
 
 - `filepath`
 - `source_type`
@@ -71,7 +85,7 @@ Each sample includes:
 - `timestamp_sec`
 - `frame_number`
 
-For YouTube runs, metadata also includes fields such as:
+Additional YouTube fields:
 
 - `source_url`
 - `video_id`
@@ -79,27 +93,40 @@ For YouTube runs, metadata also includes fields such as:
 - `duration_sec`
 - `uploader`
 
-Dataset-level info includes:
+Dataset `info` fields:
 
 - `source_type`
 - `source_metadata`
 - `extraction_info`
 
-## Local development
+## Development
 
 ```bash
-fiftyone app debug
+pip install -r requirements.txt
+pip install -r requirements-dev.txt
+pytest
+ruff check .
 ```
-
-Then refresh/restart after plugin edits to pick up changes.
 
 ## Troubleshooting
 
-- If YouTube download fails, verify URL accessibility and update `yt-dlp`
-- If no frames are kept, increase `max_frames`, lower `scene_threshold`, or disable dedup
-- If a dataset already exists, enable `overwrite_dataset` or choose a new name
+- If YouTube download fails, verify the URL is public and update `yt-dlp`
+- If no frames are selected, lower `scene_threshold` or `interval_seconds`
+- If dedup removes everything, lower `dedup_threshold` or disable `dedup`
+- If dataset exists, enable `overwrite_dataset` or use a different name
+
+## Contributing
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md).
+
+## Security
+
+Report vulnerabilities via [SECURITY.md](./SECURITY.md).
+
+## Changelog
+
+See [CHANGELOG.md](./CHANGELOG.md).
 
 ## License
 
-Apache-2.0
-
+Licensed under Apache-2.0. See [LICENSE](./LICENSE).

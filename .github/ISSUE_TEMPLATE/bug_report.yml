@@ -1,0 +1,40 @@
+name: Bug report
+description: Report a reproducible issue in the plugin
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: textarea
+    attributes:
+      label: Description
+      description: What happened?
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Steps to reproduce
+      description: Include exact commands and inputs
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: FiftyOne version
+      placeholder: "e.g. 1.13.4"
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Python version
+      placeholder: "e.g. 3.11.9"
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: OS
+      placeholder: "e.g. Windows 11 / Ubuntu 24.04 / macOS 15"
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Logs/traceback
+      render: shell
+

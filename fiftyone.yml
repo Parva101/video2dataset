@@ -1,6 +1,6 @@
 name: "@parva101/video2dataset"
 type: plugin
-version: 1.0.0
+version: 1.0.1
 author: Parva101
 description: >
   Convert YouTube or local video files into FiftyOne image datasets using
