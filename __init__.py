@@ -118,14 +118,21 @@ def download_youtube_video(url, output_dir):
         "no_warnings": True,
     }
 
-    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-        info = ydl.extract_info(url, download=True)
-        video_path = ydl.prepare_filename(info)
-        requested_downloads = info.get("requested_downloads") or []
-        if requested_downloads:
-            maybe_path = requested_downloads[0].get("filepath")
-            if maybe_path and os.path.isfile(maybe_path):
-                video_path = maybe_path
+    try:
+        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+            info = ydl.extract_info(url, download=True)
+            video_path = ydl.prepare_filename(info)
+            requested_downloads = info.get("requested_downloads") or []
+            if requested_downloads:
+                maybe_path = requested_downloads[0].get("filepath")
+                if maybe_path and os.path.isfile(maybe_path):
+                    video_path = maybe_path
+    except Exception as e:
+        raise ValueError(
+            "Failed to download YouTube video. "
+            "Please verify the URL is public/available and try again. "
+            f"Details: {e}"
+        ) from e
 
     if not os.path.isfile(video_path):
         raise RuntimeError(f"yt-dlp completed but no file was found at: {video_path}")
