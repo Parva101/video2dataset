@@ -4,7 +4,15 @@
 [![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](./LICENSE)
 [![FiftyOne Plugin](https://img.shields.io/badge/FiftyOne-plugin-orange.svg)](https://docs.voxel51.com/plugins/index.html)
 
-![video2dataset demo (FiftyOne App workflow)](./assets/video2dataset_demo.gif)
+## Demo
+
+### YouTube -> Dataset
+
+![video2dataset YouTube flow (FiftyOne App)](./assets/video2dataset_youtube_demo.gif)
+
+### Local Video -> Dataset
+
+![video2dataset local video flow (FiftyOne App)](./assets/video2dataset_local_demo.gif)
 
 A production-ready FiftyOne Python plugin that converts YouTube URLs or local
 video files into image datasets by extracting representative keyframes.
